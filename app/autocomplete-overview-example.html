@@ -1,0 +1,32 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="State"
+      aria-label="State"
+      [matAutocomplete]="auto"
+      [formControl]="stateCtrl"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      autoActiveFirstOption
+      (optionSelected)="stateSelected($event)"
+    >
+      <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+        <div>
+					<span [innerHTML]="state.name | highlight: toHighlight"></span>
+					<small>Population: {{state.population}}</small>
+				</div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div>
+		<p>The Object = {{ theObj | json}}</p> 
+		<p>The State = {{ theState}}</p>
+    <p>The Population = {{ thePopulation}}</p>
+  </div>
+</form>
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
